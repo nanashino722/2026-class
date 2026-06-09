@@ -1,0 +1,266 @@
+body {
+    text-align: center;
+    padding: 50px;
+    background-color: #f0f8ff;
+}
+
+h1 {
+    margin: 0;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #aaa;
+    display: inline-block;
+    position: relative;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background: #ff7b00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ボタンの引くアニメーション */
+#draw.drawing {
+    animation: draw-press 0.9s ease-in-out infinite;
+}
+
+@keyframes draw-press {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(0.96) rotate(-2deg);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 振る（shake）アニメーション */
+.container.shake {
+    animation: shake 1s ease-in-out;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0) rotate(0deg);
+    }
+
+    20% {
+        transform: translateX(-8px) rotate(-2deg);
+    }
+
+    40% {
+        transform: translateX(8px) rotate(2deg);
+    }
+
+    60% {
+        transform: translateX(-6px) rotate(-1deg);
+    }
+
+    80% {
+        transform: translateX(6px) rotate(1deg);
+    }
+
+    100% {
+        transform: translateX(0) rotate(0deg);
+    }
+}
+
+/* 中央バースト */
+.burst {
+    position: fixed;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 255, 220, 0.95), rgba(255, 200, 60, 0.55) 40%, rgba(255, 140, 0, 0.12) 60%, transparent 70%);
+    filter: blur(8px);
+    z-index: 10000;
+    animation: burst-pop 0.9s ease-out forwards;
+}
+
+@keyframes burst-pop {
+    0% {
+        transform: translate(-50%, -50%) scale(0.2);
+        opacity: 1;
+    }
+
+    70% {
+        transform: translate(-50%, -50%) scale(1.05);
+        opacity: 0.9;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* 大きめのコンフェッティ */
+.confetti.big {
+    width: 18px;
+    height: 22px;
+    opacity: 1;
+}
+
+/* (inline-styled confetti should use the CSS animation; removed disabling rule) */
+
+#result {
+    margin: 20px 0;
+    font-size: 20px;
+    transition: color 0.25s ease;
+}
+
+/* おみくじの結果ごとの色クラス */
+.omikuji-super {
+    color: #d4af37;
+    /* 金 */
+    font-weight: 700;
+}
+
+.omikuji-verygood {
+    color: #ff6b6b;
+    /* 明るい赤 */
+    font-weight: 700;
+}
+
+.omikuji-good {
+    color: #ff8c00;
+    /* オレンジ */
+    font-weight: 700;
+}
+
+.omikuji-mild {
+    color: #4caf50;
+    /* 緑 */
+    font-weight: 700;
+}
+
+.omikuji-neutral {
+    color: #607d8b;
+    /* グレー */
+    font-weight: 600;
+}
+
+.omikuji-bad {
+    color: #e53935;
+    /* 赤（凶） */
+    font-weight: 700;
+}
+
+.omikuji-verybad {
+    color: #b71c1c;
+    /* 濃い赤（大凶） */
+    font-weight: 800;
+}
+
+/* 良い運勢時のテキスト演出 */
+.omikuji-super.celebrate,
+.omikuji-verygood.celebrate {
+    animation: glow 0.8s ease-in-out infinite alternate;
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.9), 0 0 16px rgba(255, 107, 107, 0.6);
+}
+
+@keyframes glow {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-4px);
+        filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.08));
+    }
+}
+
+/* 中吉用の短いパルス */
+.pulse {
+    animation: pulse 0.6s ease-in-out 0s 2;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* コンフェッティ要素 */
+.confetti {
+    position: fixed;
+    top: -20px;
+    width: 10px;
+    height: 14px;
+    opacity: 0.95;
+    border-radius: 2px;
+    pointer-events: none;
+    animation: confetti-fall 4s linear forwards;
+    z-index: 9999;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* 一言コメントのスタイル */
+#comment {
+    margin: 8px 0 0 0;
+    color: #37474f;
+    font-size: 16px;
+}
+
+/* 小さい紙吹雪 */
+.confetti.small {
+    width: 6px;
+    height: 8px;
+    opacity: 0.95;
+}
+
+/* 形状（星・丸・四角） */
+.confetti.circle {
+    border-radius: 50%;
+}
+
+.confetti.square {
+    border-radius: 2px;
+}
+
+.confetti.star {
+    /* 5-point star using clip-path */
+    clip-path: polygon(50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 91%,
+            50% 70%,
+            21% 91%,
+            32% 57%,
+            2% 35%,
+            39% 35%);
+}

@@ -1,3 +1,18 @@
+const startButton = document.getElementById('start-button');
+const startScreen = document.getElementById('start-screen');
+const app = document.getElementById('app');
+
+if (startButton && startScreen && app) {
+    startButton.addEventListener('click', function () {
+        startScreen.classList.add('hide');
+        setTimeout(() => {
+            startScreen.style.display = 'none';
+            app.classList.remove('hidden');
+            app.classList.add('fade-in');
+        }, 300);
+    });
+}
+
 document.getElementById('draw').addEventListener('click', function () {
     const omikujiResults = ['超大吉', '大吉', '中吉', '小吉', '末吉', '凶', '大凶'];
     const resultEl = document.getElementById('result');

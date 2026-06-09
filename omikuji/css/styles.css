@@ -26,6 +26,54 @@ button {
     cursor: pointer;
 }
 
+.start-screen {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #f0f8ff 0%, #dbefff 100%);
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.start-screen h1 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+.start-screen p {
+    font-size: 1.1rem;
+    margin-bottom: 24px;
+    color: #37474f;
+}
+
+.start-screen button {
+    min-width: 180px;
+}
+
+.hidden {
+    display: none;
+}
+
+.hide {
+    animation: fade-out 0.3s ease-out forwards;
+}
+
+.fade-in {
+    animation: fade-in 0.35s ease-out forwards;
+}
+
+@keyframes fade-out {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(10px); }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* ボタンの引くアニメーション */
 #draw.drawing {
     animation: draw-press 0.9s ease-in-out infinite;
